@@ -11,3 +11,7 @@ input UserInput {
 type Query {
   user(id: ID!): User
 }
+
+directive @required(
+  msg: String
+) on INPUT_FIELD_DEFINITION | FIELD_DEFINITION
