@@ -1,0 +1,16 @@
+generates:
+  ./lib/graphql.ts:
+    schema: '../graphql/schema.graphql'
+    documents:
+      - './pages/**/*.graphql'
+      - './components/**/*.graphql'
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-graphql-request
+      - plugin-typescript-swr
+      - typescript-validation-schema
+config:
+  rawRequest: false
+  autogenSWRKey: true
+  schema: zod

@@ -1,0 +1,13 @@
+type User {
+  email: String!
+  message: String!
+}
+
+input UserInput {
+  email: String! @required(msg: "Hello, World!") @constraint(minLength: 50, format: "email")
+  message: String! @constraint(startsWith: "Hello")
+}
+
+type Query {
+  user(id: ID!): User
+}
