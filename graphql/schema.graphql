@@ -4,7 +4,7 @@ type User {
 }
 
 input UserInput {
-  email: String! @required(msg: "Hello, World!") @constraint(minLength: 50, format: "email")
+  email: String! @required(msg: "Hello, World!") @constraint(minLength: 20, format: "email")
   message: String! @constraint(startsWith: "Hello")
 }
 

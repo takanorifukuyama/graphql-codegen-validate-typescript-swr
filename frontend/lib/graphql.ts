@@ -93,7 +93,7 @@ export const definedNonNullAnySchema = z.any().refine((v) => isDefinedNonNullAny
 
 export function UserInputSchema(): z.ZodObject<Properties<UserInput>> {
   return z.object({
-    email: z.string(),
-    message: z.string()
+    email: z.string().min(20).email(),
+    message: z.string().regex(/^Hello/, "message")
   })
 }

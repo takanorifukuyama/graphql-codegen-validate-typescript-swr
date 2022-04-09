@@ -10,7 +10,17 @@ generates:
       - typescript-graphql-request
       - plugin-typescript-swr
       - typescript-validation-schema
+
 config:
   rawRequest: false
   autogenSWRKey: true
   schema: zod
+  scalarSchemas:
+    Date: z.date()
+    Email: z.string().email()
+  directives:
+    constraint:
+      minLength: min
+      startsWith: ["regex", "/^$1/", "message"]
+      format:
+        email: email
