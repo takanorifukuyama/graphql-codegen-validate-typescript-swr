@@ -12,11 +12,10 @@ export type TextFormProps = {
   label: string;
   placeholder: string;
   name: string;
-  isRequired?: boolean;
 } & InputProps;
 
 export const TextForm: FC<TextFormProps> = ({
-  isRequired = false,
+  isRequired,
   name,
   placeholder,
   label,
