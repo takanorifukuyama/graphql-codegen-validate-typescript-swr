@@ -1,3 +1,4 @@
+
 type User {
   email: String!
   message: String!
@@ -14,4 +15,9 @@ type Query {
 
 directive @required(
   msg: String
+) on INPUT_FIELD_DEFINITION | FIELD_DEFINITION
+directive @constraint(
+  minLength: Int,
+  format: String,
+  startsWith: String,
 ) on INPUT_FIELD_DEFINITION | FIELD_DEFINITION
