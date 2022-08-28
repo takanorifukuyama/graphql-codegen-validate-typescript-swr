@@ -5,16 +5,23 @@ import styles from "../styles/Home.module.css";
 import { useForm } from "react-hook-form";
 import { UserInput, UserInputSchema } from "../lib/graphql";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { TextForm } from "../components/form";
+import { TextInput } from "../components/form";
 import { Button, Stack } from "@chakra-ui/react";
 
 const Home: NextPage = () => {
-  const { register, handleSubmit } = useForm<UserInput>({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    clearErrors,
+  } = useForm<UserInput>({
     resolver: zodResolver(UserInputSchema()),
+    reValidateMode: "onSubmit",
   });
   const onSubmit = useCallback((data: UserInput) => {
     console.log(data);
   }, []);
+  const handleChange = useCallback(() => clearErrors(), [clearErrors]);
   return (
     <div className={styles.container}>
       <Head>
@@ -26,18 +33,24 @@ const Home: NextPage = () => {
       <main className={styles.main}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Stack spacing={10}>
-            <TextForm
+            <TextInput
               placeholder="email"
               label="email"
+              errorMessage={errors.email?.message}
               {...register("email")}
+              onChange={handleChange}
             />
-            <TextForm
+            <TextInput
               placeholder="message"
               label="message"
+              errorMessage={errors.message?.message}
               {...register("message")}
+              onChange={handleChange}
             />
 
-            <Button type="submit">Submit</Button>
+            <Button type="submit" colorScheme="blue">
+              Submit
+            </Button>
           </Stack>
         </form>
       </main>

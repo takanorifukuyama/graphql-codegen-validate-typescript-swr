@@ -21,6 +21,6 @@ config:
   directives:
     constraint:
       minLength: min
-      startsWith: ["regex", "/^$1/", "message"]
+      startsWith: ["regex", "/^$1/", "$1から始める必要があります"]
       format:
         email: email
